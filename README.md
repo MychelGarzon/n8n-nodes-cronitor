@@ -1,25 +1,55 @@
-# n8n-nodes-cronitor
+# n8n-nodes-fingrid
 
-Cronitor integration for [n8n](https://n8n.io). In active development.
+n8n community node for [Fingrid Open Data](https://data.fingrid.fi/en) — real-time and historical
+Finnish power grid and electricity market data (frequency, power system state, electricity shortage
+status, production/consumption, cross-border transmission, balancing and reserve markets).
 
-This node will let you manage Cronitor monitors, send telemetry/heartbeat pings, and work with environments and maintenance windows directly from an n8n workflow.
+**Not affiliated with, endorsed by, or sponsored by Fingrid Oyj.**
 
-## Status
+## Data license
 
-Placeholder package. Core node and credential structure are scaffolded but not yet functional. Follow this repo for updates.
+Fingrid's data is published under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+Attribution required when displaying or republishing the data:
 
-## Planned v1 scope
+> Source Fingrid / data.fingrid.fi, license CC 4.0 BY
 
-- Monitors
-- Telemetry (ping)
-- Environments
-- Maintenance Windows
+## Prerequisites
 
-Follow-up scope: Groups, Notifications, Issues, Status Pages, Sites, Metrics.
+You need a free Fingrid Open Data API key:
 
-## Disclaimer
+1. Go to https://data.fingrid.fi/en and sign up (email only, no company/business account required)
+2. Approve the license and terms of use
+3. You'll receive a personal API key by email immediately
+4. Rate limits: 10 requests/minute, 10,000/day
 
-This is an independent, unofficial integration. Not affiliated with, endorsed by, or sponsored by Cronitor, Inc.
+## Resources & operations
+
+- **Dataset**
+  - Get — metadata for a single dataset by ID
+  - Search — search/list all public datasets
+  - Get Data — time series data for a dataset within a time range
+  - Get Latest Data — most recent data point for a dataset
+  - Get File — a single dataset file
+  - Get File Data — file-based data within a time range
+- **Data (multiple datasets)**
+  - Get Multiple — time series data for several datasets in one call
+  - Get Updated — data for datasets changed within a recent period
+- **System**
+  - Get Active Notifications
+  - Get Health Status
+
+## Finding dataset IDs
+
+Use the **Dataset → Search** operation (with or without search text) to browse available datasets
+and find their numeric IDs, or browse https://data.fingrid.fi/en/datasets in a browser.
+
+## Development
+
+```bash
+npm install
+npm run build
+npm run lint
+```
 
 ## License
 

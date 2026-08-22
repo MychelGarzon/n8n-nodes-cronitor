@@ -1,24 +1,32 @@
 {
-  "name": "n8n-nodes-cronitor",
+  "name": "n8n-nodes-fingrid",
   "version": "0.1.0",
-  "description": "n8n community node for Cronitor (monitoring, telemetry, heartbeat checks). In active development.",
+  "description": "n8n community node for Fingrid Open Data — Finnish power grid and electricity market data",
   "keywords": [
-    "n8n-community-node-package"
+    "n8n-community-node-package",
+    "fingrid",
+    "electricity",
+    "power-grid",
+    "finland",
+    "energy"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/YOUR-GITHUB-USERNAME/n8n-nodes-cronitor",
+  "homepage": "https://github.com/MychelGarzon/n8n-nodes-fingrid",
   "author": {
-    "name": "YOUR NAME",
-    "email": "YOUR-EMAIL@example.com"
+    "name": "Mychel Garzon"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/YOUR-GITHUB-USERNAME/n8n-nodes-cronitor.git"
+    "url": "git+https://github.com/MychelGarzon/n8n-nodes-fingrid.git"
   },
   "main": "index.js",
   "scripts": {
-    "build": "tsc",
-    "dev": "tsc --watch"
+    "build": "npx rimraf dist && tsc && npx gulp build:icons",
+    "dev": "tsc --watch",
+    "format": "prettier nodes credentials --write",
+    "lint": "eslint nodes credentials package.json",
+    "lintfix": "eslint nodes credentials package.json --fix",
+    "prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js nodes credentials package.json"
   },
   "files": [
     "dist"
@@ -26,17 +34,25 @@
   "n8n": {
     "n8nNodesApiVersion": 1,
     "credentials": [
-      "dist/credentials/CronitorApi.credentials.js"
+      "dist/credentials/FingridApi.credentials.js"
     ],
     "nodes": [
-      "dist/nodes/Cronitor/Cronitor.node.js"
+      "dist/nodes/Fingrid/Fingrid.node.js"
     ]
   },
   "devDependencies": {
-    "typescript": "^5.4.0",
-    "n8n-workflow": "*"
+    "@typescript-eslint/parser": "~8.32.0",
+    "eslint-plugin-n8n-nodes-base": "^1.16.3",
+    "gulp": "^5.0.0",
+    "n8n-core": "^1.14.1",
+    "n8n-workflow": "^1.82.0",
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.2"
   },
   "peerDependencies": {
     "n8n-workflow": "*"
+  },
+  "engines": {
+    "node": ">=20.15"
   }
 }
